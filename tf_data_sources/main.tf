@@ -14,13 +14,27 @@ resource "aws_instance" "test1" {
   subnet_id              = data.aws_subnets.def_vpc_subnets.ids[0]
   vpc_security_group_ids = [aws_security_group.sec_web.id]
   key_name               = var.key_name
+  count                  = 4
+  tags = {
+    Name = "${var.project}-test1"
+  }
+}
+
+resource "aws_instance" "test2" {
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = var.instance_type
+  subnet_id              = data.aws_subnets.def_vpc_subnets.ids[0]
+  vpc_security_group_ids = [aws_security_group.sec_web.id]
+  key_name               = var.key_name
   tags = {
     Name = "${var.project}-test1"
   }
 }
 
 
-# Security group for web server in public subnet 
+
+
+# Security group for web server in public subnet
 
 resource "aws_security_group" "sec_web" {
   vpc_id = data.aws_vpc.def_vpc.id
@@ -30,6 +44,13 @@ resource "aws_security_group" "sec_web" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
+    cidr_blocks = var.sec_allowed_external
+  }
+  ingress {
+    description = "Temp for testing - UDP 53"
+    from_port   = 53
+    to_port     = 53
+    protocol    = "udp"
     cidr_blocks = var.sec_allowed_external
   }
   ingress {

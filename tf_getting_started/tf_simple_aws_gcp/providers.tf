@@ -22,8 +22,8 @@ provider "aws" {
   }
 }
 
-provider "google" {
- credentials = file("~/.gcp/test-rp-01-3297391dce5b.json")
- project     = "test-rp-01"
- region      = var.gcp_region   ## London
-}
+# provider "google" {
+#  credentials = file("~/.gcp/test-rp-01-3297391dce5b.json")
+#  project     = "test-rp-01"
+#  region      = var.gcp_region   ## London
+# }

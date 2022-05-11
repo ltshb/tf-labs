@@ -11,10 +11,11 @@ terraform {
 
 provider "aws" {
   region  = "eu-west-1"
-  profile = "tfadmin1"
+  profile = "swisstopo-playground-ltshb"
   default_tags {
     tags = {
       disposable = true
+      tf-course  = true
     }
   }
 }
@@ -22,11 +23,11 @@ provider "aws" {
 # ==== resources
 resource "aws_instance" "test_vm" {
   ami                         = "ami-00e7df8df28dfa791" # ubuntu 20.04 in eu-west-1
-  instance_type               = "t2.micro"
+  instance_type               = "t2.small"
   associate_public_ip_address = true
   key_name                    = "tf-course"
   # vpc_security_group_ids      = ["sg-046e7328c8c8afc63"] # Pre-created security group
-  vpc_security_group_ids = ["sg-06f2dded043e263c5"] # Pre-created security group
+  vpc_security_group_ids = ["sg-0b82beda37bb28f5c"] # Pre-created security group
   tags = {
     Name = "super_basic"
   }

@@ -1,4 +1,4 @@
-profile = "tfadmin1"
+profile = "swisstopo-playground-ltshb"
 region  = "eu-west-1"
 
 project     = "acme02"
