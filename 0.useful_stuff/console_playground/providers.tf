@@ -4,14 +4,8 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 4.6"
+      version = ">= 4.6" # v3.38.0 minimal version to use default tags
     }
-
-    local = {
-      source  = "hashicorp/local"
-      version = "2.2.2"
-    }
-
   }
 }
 
@@ -26,8 +20,4 @@ provider "aws" {
       disposable  = true
     }
   }
-}
-
-provider "local" {
-  # Configuration options
 }

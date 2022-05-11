@@ -1,25 +1,23 @@
 ## Locals
 
 locals {
-  server_list = [for i in range(0, var.num_instances) : format("svr-%s", i)]
+  # server_list = [for i in range(0, var.num_instances) : format("svr-%s", i)]
+  server_list = ["accounting", "auditing"]
   num_azs     = length(data.aws_availability_zones.azs.names)
+  useless = "${var.environment}+${var.profile}"
 }
 
-
 resource "aws_instance" "test" {
-  count         = length(local.server_list)
+for_each = toset(local.server_list)
   ami           = data.aws_ami.amazon_linux2_kernel_5.id
   instance_type = var.instance_type
-  # subnet_id              = data.aws_subnets.def_vpc_subnets.ids[count.index % local.num_azs]
-  subnet_id              = element(data.aws_subnets.def_vpc_subnets.ids, count.index)
   vpc_security_group_ids = [aws_security_group.sec_web.id]
   key_name               = var.key_name
   tags = {
-    Name = "${var.project}-${local.server_list[count.index]}"
-  }
+    Name = "${var.project}-${each.key}"
 }
 
-
+}
 # Security group for web server in public subnet 
 
 resource "aws_security_group" "sec_web" {

@@ -18,7 +18,7 @@ variable "region" {
 
 variable "profile" {
   type    = string
-  # default = "tfadmin1"
+  default = "tfadmin1"
 }
 
 ## EC2 Instance Parameters
@@ -37,12 +37,6 @@ variable "key_name" {
 variable "sec_allowed_external" {
   description = "CIDRs from which access is allowed"
   type        = list(string)
-  default     = ["0.0.0.0/0"]
+  default     = ["0.0.0.0/10", "0.0.0.0/10"]
 }
 
-## ================== Google Cloud vars ================
-
-variable "gcp_region" {
-  description = "GCP Region"
-  default     = "europe-west1" # Belgium
-}
