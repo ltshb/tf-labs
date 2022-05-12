@@ -18,7 +18,7 @@ variable "region" {
 
 variable "profile" {
   type    = string
-  default = "tfadmin1"
+  default = "swisstopo-playground-ltshb"
 }
 
 ## EC2 Instance Parameters
@@ -29,13 +29,13 @@ variable "ec2_instance_type" {
 
 variable "vpc_cidr" {
   description = "CIDR for VPC"
-  type = string
+  type        = string
 }
 
 ## Discuss why this variable may be a bad idea...
 variable "subnet_cidr" {
   description = "CIDR for subnet"
-  type = string
+  type        = string
 }
 
 # variable "key_name" {
