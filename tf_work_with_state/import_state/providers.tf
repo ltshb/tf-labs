@@ -6,10 +6,6 @@ terraform {
       source  = "hashicorp/aws"
       version = ">= 4.6" # v3.38.0 minimal version to use default tags
     }
-    random = {
-      source = "hashicorp/random"
-      version = "3.1.3"
-    }
   }
 }
 
@@ -25,11 +21,3 @@ provider "aws" {
     }
   }
 }
-
-
-
-
-provider "random" {
-  # Configuration options
-}
-
