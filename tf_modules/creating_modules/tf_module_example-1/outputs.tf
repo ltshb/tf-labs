@@ -27,3 +27,15 @@ output "web1_public_ip" {
   description = "Public IP of EC2 instance"
   value       = module.web1.instance_public_ip
 }
+
+output "bucket1" {
+  value = module.bucket1.bucket_arn
+}
+
+output "bucket2" {
+  value = module.bucket2.bucket_arn
+}
+
+output "bucketx" {
+  value = module.bucketx[*].bucket_arn
+}
