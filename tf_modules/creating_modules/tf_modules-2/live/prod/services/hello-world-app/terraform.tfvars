@@ -1,0 +1,5 @@
+# project                = "acme99"
+profile                = "swisstopo-playground-ltshb"
+region                 = "eu-west-1"
+db_remote_state_bucket = "tf-state-446637091088-acme99-prod"
+db_remote_state_key    = "data-stores/terraform.tfstate"

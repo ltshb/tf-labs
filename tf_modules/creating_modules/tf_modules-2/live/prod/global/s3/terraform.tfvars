@@ -1,6 +1,6 @@
 environment = "prod"
 
 region  = "eu-west-1"
-profile = "tfadmin1"
+profile = "swisstopo-playground-ltshb"
 project = "acme99"
 

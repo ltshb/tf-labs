@@ -1,3 +1,13 @@
+variable "profile" {
+  description = "AWS profile"
+  type        = string
+}
+variable "region" {
+  description = "AWS Region"
+  type        = string
+}
+
+
 # ---------------------------------------------------------------------------------------------------------------------
 # REQUIRED PARAMETERS
 # You must provide a value for each of these parameters.

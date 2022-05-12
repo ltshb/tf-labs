@@ -3,6 +3,15 @@
 # You must provide a value for each of these parameters.
 # ---------------------------------------------------------------------------------------------------------------------
 
+variable "profile" {
+  description = "AWS profile"
+  type        = string
+}
+variable "region" {
+  description = "AWS Region"
+  type        = string
+}
+
 variable "db_username" {
   description = "The username for the database"
   type        = string

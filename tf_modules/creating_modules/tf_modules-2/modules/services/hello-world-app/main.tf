@@ -18,7 +18,7 @@ module "asg" {
   ami           = var.ami
   instance_type = var.instance_type
 
-  user_data     = templatefile("${path.module}/user-data.sh", {
+  user_data = templatefile("${path.module}/user-data.sh", {
     server_port = var.server_port
     ## (RP) get DB info
     db_address  = data.terraform_remote_state.db.outputs.address
@@ -33,7 +33,7 @@ module "asg" {
   subnet_ids        = data.aws_subnets.default.ids
   target_group_arns = [aws_lb_target_group.asg.arn]
   health_check_type = "ELB"
-  
+
   custom_tags = var.custom_tags
 }
 
@@ -82,9 +82,10 @@ data "terraform_remote_state" "db" {
   backend = "s3"
 
   config = {
-    bucket = var.db_remote_state_bucket
-    key    = var.db_remote_state_key
-    region = "eu-west-1"
+    bucket  = var.db_remote_state_bucket
+    key     = var.db_remote_state_key
+    region  = var.region
+    profile = var.profile
   }
 }
 

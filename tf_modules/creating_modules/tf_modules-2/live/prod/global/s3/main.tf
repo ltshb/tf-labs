@@ -6,16 +6,18 @@ locals {
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "tf-state-${local.account_id}-${var.project}-${var.environment}"
 
-  #  Protect against bucket deletion - uncomment when ready 
-      lifecycle {
-        prevent_destroy = true
-      }
+  force_destroy = true
+
+  #  Protect against bucket deletion - uncomment when ready
+  # lifecycle {
+  #   prevent_destroy = true
+  # }
 }
 
 resource "aws_s3_bucket_versioning" "enabled" {
   bucket = aws_s3_bucket.terraform_state.id
   versioning_configuration {
-    status = "Enabled"
+    status = "Disabled"
   }
 }
 
@@ -42,6 +44,7 @@ resource "aws_dynamodb_table" "terraform_state_locks" {
   name         = "tf-state-lock-${var.project}-${var.environment}"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
+
 
   attribute {
     name = "LockID"
